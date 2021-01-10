@@ -49,7 +49,7 @@ class LogWriter implements PerformanceLogWriter
     protected function getTimeInMilliSeconds(): string
     {
         $milliSeconds = (microtime(true) - $this->start) * 1000;
-        return sprintf("%.3f", $milliSeconds);
+        return sprintf('%.3f', $milliSeconds);
     }
 
     protected function getMemoryInMB(): int

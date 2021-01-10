@@ -46,7 +46,7 @@ class LogWriter implements QueryLogWriter
         return [
             'time' => $query->time,
             'connection_name' => $query->connectionName,
-            'sql' => $sql
+            'sql' => $sql,
         ];
     }
 
@@ -63,8 +63,8 @@ class LogWriter implements QueryLogWriter
      */
     protected function quote(string $value): string
     {
-        $search = ["\\", "\x00", "\n", "\r", "'", '"', "\x1a"];
-        $replace = ["\\\\", "\\0", "\\n", "\\r", "\'", '\"', "\\Z"];
+        $search = ['\\', "\x00", "\n", "\r", "'", '"', "\x1a"];
+        $replace = ['\\\\', '\\0', '\\n', '\\r', "\'", '\"', '\\Z'];
 
         return "'".str_replace($search, $replace, $value)."'";
     }

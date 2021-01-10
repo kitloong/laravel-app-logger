@@ -24,7 +24,7 @@ return [
             \Illuminate\Http\Request::METHOD_POST,
             \Illuminate\Http\Request::METHOD_PUT,
             \Illuminate\Http\Request::METHOD_PATCH,
-            \Illuminate\Http\Request::METHOD_DELETE
+            \Illuminate\Http\Request::METHOD_DELETE,
         ],
 
         /*
@@ -66,7 +66,7 @@ return [
             \Illuminate\Http\Request::METHOD_POST,
             \Illuminate\Http\Request::METHOD_PUT,
             \Illuminate\Http\Request::METHOD_PATCH,
-            \Illuminate\Http\Request::METHOD_DELETE
+            \Illuminate\Http\Request::METHOD_DELETE,
         ],
 
         /*
@@ -96,5 +96,5 @@ return [
          * null value to use default channel.
          */
         'channel' => null,
-    ]
+    ],
 ];
