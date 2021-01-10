@@ -14,7 +14,7 @@ class QueryLogTest extends TestCase
 {
     public function testLog()
     {
-        $this->assertFileDoesNotExist(storage_path('logs/laravel.log'));
+        $this->assertFalse(file_exists(storage_path('logs/laravel.log')));
 
         $this->loadMigrationsFrom(base_path('tests/migrations'));
 

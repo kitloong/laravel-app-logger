@@ -13,7 +13,7 @@ class HttpLogTest extends TestCase
 {
     public function testLog()
     {
-        $this->assertFileDoesNotExist(storage_path('logs/laravel.log'));
+        $this->assertFalse(file_exists(storage_path('logs/laravel.log')));
 
         $this->post(self::TEST_URI)
             ->assertJson(['health' => 1]);
