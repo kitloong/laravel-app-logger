@@ -1,6 +1,6 @@
 # Laravel Application Logger
 
-![Run tests](https://github.com/kitloong/laravel-app-logger/workflows/Run%20tests/badge.svg?branch=main)
+![Run tests](https://github.com/kitloong/laravel-app-logger/workflows/Run%20tests/badge.svg?branch=1.x)
 [![Latest Stable Version](https://poser.pugx.org/kitloong/laravel-app-logger/v/stable.png)](https://packagist.org/packages/kitloong/laravel-app-logger)
 [![License](https://poser.pugx.org/kitloong/laravel-app-logger/license.png)](https://packagist.org/packages/kitloong/laravel-app-logger)
 
