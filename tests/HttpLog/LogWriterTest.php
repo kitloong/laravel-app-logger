@@ -63,7 +63,7 @@ class LogWriterTest extends TestCase
             ],
             [],
             [
-                'file' => $testFile
+                'file' => $testFile,
             ]
         );
         $message = $logWriter->testGetMessages($request, 'test-uniqid');
@@ -74,12 +74,12 @@ class LogWriterTest extends TestCase
             'uri' => $request->getPathInfo(),
             'body' => [
                 'name' => 'Name',
-                'file' => $testFile
+                'file' => $testFile,
             ],
             'headers' => $request->headers->all(),
             'files' => [
-                'test.txt'
-            ]
+                'test.txt',
+            ],
         ], $message);
     }
 
@@ -94,10 +94,10 @@ class LogWriterTest extends TestCase
                 'name' => 'Name',
             ],
             'headers' => [
-                'accept' => 'text/html'
+                'accept' => 'text/html',
             ],
             'files' => [
-                'test.txt'
+                'test.txt',
             ],
         ]);
 
@@ -109,7 +109,7 @@ class LogWriterTest extends TestCase
 
     private function getLogWriter(): LogWriter
     {
-        return new class extends LogWriter {
+        return new class() extends LogWriter {
             public function testGetMessages(Request $request, string $uniqId): array
             {
                 return $this->getMessages($request, $uniqId);

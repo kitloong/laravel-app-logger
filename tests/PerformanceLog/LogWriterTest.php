@@ -89,7 +89,7 @@ class LogWriterTest extends TestCase
 
     private function getLogWriter(): LogWriter
     {
-        return new class extends LogWriter {
+        return new class() extends LogWriter {
             public function getStart()
             {
                 return $this->start;

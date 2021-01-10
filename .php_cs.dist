@@ -2,8 +2,7 @@
 require __DIR__ . '/vendor/autoload.php';
 
 $finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__)
-    ->exclude('tests');
+    ->in(__DIR__);
 
 $config = require __DIR__ . '/.php_cs.common.php';
 

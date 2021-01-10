@@ -17,14 +17,14 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 abstract class TestCase extends Testbench
 {
-    const TEST_URI = 'test/uri';
+    public const TEST_URI = 'test/uri';
 
     protected function setupRoutes()
     {
         Route::match(['get', 'post', 'put', 'patch', 'delete'], self::TEST_URI, function () {
             return ['health' => 1];
         })->middleware([
-            AppLogger::class
+            AppLogger::class,
         ]);
     }
 
@@ -38,7 +38,7 @@ abstract class TestCase extends Testbench
             'driver' => 'sqlite',
             'database' => ':memory:',
             'prefix' => '',
-            'foreign_key_constraints' => true
+            'foreign_key_constraints' => true,
         ]);
 
         $app['config']->set('database.default', 'sqlite');
@@ -73,7 +73,7 @@ abstract class TestCase extends Testbench
     protected function getPackageProviders($app)
     {
         return [
-            AppLoggerServiceProvider::class
+            AppLoggerServiceProvider::class,
         ];
     }
 

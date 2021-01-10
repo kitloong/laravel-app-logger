@@ -37,9 +37,9 @@ class LogWriterTest extends TestCase
                         ->andReturn('mysql')
                         ->once();
                 $query = new QueryExecuted(
-                    "SELECT * FROM users WHERE id = :id",
+                    'SELECT * FROM users WHERE id = :id',
                     [
-                        'id' => 1
+                        'id' => 1,
                     ],
                     10,
                     $connection
@@ -69,7 +69,7 @@ class LogWriterTest extends TestCase
             ->once();
 
         $query = new QueryExecuted(
-            "SELECT * FROM users WHERE id = :id AND name = :name",
+            'SELECT * FROM users WHERE id = :id AND name = :name',
             [
                 'id' => 1,
                 'name' => 'Name',
@@ -84,7 +84,7 @@ class LogWriterTest extends TestCase
         $this->assertSame([
             'time' => 10,
             'connection_name' => 'mysql',
-            'sql' => "SELECT * FROM users WHERE id = 1 AND name = 'Name'"
+            'sql' => "SELECT * FROM users WHERE id = 1 AND name = 'Name'",
         ], $messages);
     }
 
@@ -95,7 +95,7 @@ class LogWriterTest extends TestCase
         $message = $logWriter->testFormatMessage([
             'time' => 10,
             'connection_name' => 'mysql',
-            'sql' => "SELECT * FROM users WHERE id = 1 AND name = 'Name'"
+            'sql' => "SELECT * FROM users WHERE id = 1 AND name = 'Name'",
         ]);
 
         $this->assertSame(
@@ -116,7 +116,7 @@ class LogWriterTest extends TestCase
 
     private function getLogWriter(): LogWriter
     {
-        return new class extends LogWriter {
+        return new class() extends LogWriter {
             public function testGetMessages(QueryExecuted $query): array
             {
                 return $this->getMessages($query);
