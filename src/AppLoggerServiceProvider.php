@@ -31,7 +31,7 @@ class AppLoggerServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/app-logger.php' => config_path('app-logger.php'),
-        ]);
+        ], 'config');
 
         if (app(QueryLogProfile::class)->shouldLog()) {
             app(QueryLogWriter::class)->log();
