@@ -149,6 +149,20 @@ This is content of config file
 
 This package used https://github.com/spatie/laravel-http-logger as base for **http request** log, as well as the code design pattern.
 
+We could receive tons of access in a real life production application.
+
+In order to ease for analyze, a unique string is embedded into **http request** and **performance** log to indicate both log entries are related.
+
+```bash
+# Http request, unique: 2725ffb10adeae3f
+[2021-01-10 23:35:25] local.INFO: 2725ffb10adeae3f GET /path - Body ...
+
+# Performance, unique: 2725ffb10adeae3f
+[2021-01-10 23:35:27] local.INFO: 2725ffb10adeae3f GET /path - Time: 55 - Memory: 5
+```
+
+If you found any high memory usage or slow requests you could easily grep request log by the unique string for more information.  
+
 # License
 
 The Laravel Application Logger is open-sourced software licensed under the [MIT license](LICENSE)
