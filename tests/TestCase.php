@@ -19,7 +19,7 @@ abstract class TestCase extends Testbench
 {
     const TEST_URI = 'test/uri';
 
-    protected function defineRoutes($router)
+    protected function setupRoutes()
     {
         Route::match(['get', 'post', 'put', 'patch', 'delete'], self::TEST_URI, function () {
             return ['health' => 1];
@@ -81,6 +81,7 @@ abstract class TestCase extends Testbench
     {
         parent::setUp();
 
+        $this->setupRoutes();
         $this->refreshStoragePath();
     }
 
