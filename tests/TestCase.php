@@ -8,7 +8,6 @@
 namespace KitLoong\AppLogger\Tests;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use KitLoong\AppLogger\AppLoggerServiceProvider;
