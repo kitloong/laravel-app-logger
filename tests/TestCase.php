@@ -8,6 +8,7 @@
 namespace KitLoong\AppLogger\Tests;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use KitLoong\AppLogger\AppLoggerServiceProvider;
@@ -66,6 +67,10 @@ abstract class TestCase extends Testbench
             'path' => storage_path('logs/query.log'),
             'level' => 'debug',
         ]);
+
+        $app['config']->set('app-logger.http.enabled', true);
+        $app['config']->set('app-logger.performance.enabled', true);
+        $app['config']->set('app-logger.query.enabled', true);
 
         $app['config']->set('logging.default', 'single');
     }

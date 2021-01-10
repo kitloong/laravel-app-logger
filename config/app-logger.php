@@ -77,7 +77,7 @@ return [
     ],
 
     'query' => [
-        'enabled' => env('RUN_QUERY_LOG', true),
+        'enabled' => env('RUN_QUERY_LOG', false),
 
         /*
          * The log profile which determines whether a request should be logged.
