@@ -21,6 +21,7 @@ return [
          * you could define which HTTP methods should be logged.
          */
         'should_log' => [
+            \Illuminate\Http\Request::METHOD_GET,
             \Illuminate\Http\Request::METHOD_POST,
             \Illuminate\Http\Request::METHOD_PUT,
             \Illuminate\Http\Request::METHOD_PATCH,
