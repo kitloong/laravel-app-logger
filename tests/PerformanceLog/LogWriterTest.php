@@ -46,7 +46,7 @@ class LogWriterTest extends TestCase
         Log::shouldReceive('info')
             ->withArgs(function ($args) {
                 $this->assertStringMatchesFormat(
-                    'test-uniqid POST /test/uri - Time: %f - Memory: %f',
+                    'test-uniqid POST /test/uri - Time: %f - Memory: %fMiB',
                     $args
                 );
                 return true;
@@ -84,7 +84,7 @@ class LogWriterTest extends TestCase
             'memory' => '20',
         ]);
 
-        $this->assertSame('test-uniqid post /test/url - Time: 50 - Memory: 20', $message);
+        $this->assertSame('test-uniqid post /test/url - Time: 50 - Memory: 20MiB', $message);
     }
 
     private function getLogWriter(): LogWriter
