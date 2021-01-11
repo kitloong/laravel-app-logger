@@ -6,12 +6,12 @@
 
 This package provides middleware that generate **http request** and **performance** logs for you application.
 
-This package also provides Database **query log** to track all executed queries by your application.
+This package also provides Database **query log** to log all executed queries by your application.
 
 ## Installation
 
 ```bash
-composer require "kitloong/laravel-app-logger"
+composer require kitloong/laravel-app-logger
 ```
 
 ## Usage
@@ -127,13 +127,13 @@ This is content of config file
         'enabled' => env('RUN_QUERY_LOG', false),
 
         /*
-         * The log profile which determines whether a request should be logged.
+         * The log profile which determines whether query should be logged.
          * It should implement `QueryLogProfile`.
          */
         'log_profile' => \KitLoong\AppLogger\QueryLog\LogProfile::class,
 
         /*
-         * The log writer used to write the request to a log.
+         * The log writer used to write the query to a log.
          * It should implement `QueryLogWriter`.
          */
         'log_writer' => \KitLoong\AppLogger\QueryLog\LogWriter::class,
