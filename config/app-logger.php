@@ -21,7 +21,6 @@ return [
          * you could define which HTTP methods should be logged.
          */
         'should_log' => [
-            \Illuminate\Http\Request::METHOD_GET,
             \Illuminate\Http\Request::METHOD_POST,
             \Illuminate\Http\Request::METHOD_PUT,
             \Illuminate\Http\Request::METHOD_PATCH,
@@ -81,13 +80,13 @@ return [
         'enabled' => env('RUN_QUERY_LOG', false),
 
         /*
-         * The log profile which determines whether a request should be logged.
+         * The log profile which determines whether query should be logged.
          * It should implement `QueryLogProfile`.
          */
         'log_profile' => \KitLoong\AppLogger\QueryLog\LogProfile::class,
 
         /*
-         * The log writer used to write the request to a log.
+         * The log writer used to write the query to a log.
          * It should implement `QueryLogWriter`.
          */
         'log_writer' => \KitLoong\AppLogger\QueryLog\LogWriter::class,
