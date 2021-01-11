@@ -54,12 +54,12 @@ class LogWriter implements PerformanceLogWriter
 
     protected function getMemoryInMB(): int
     {
-        return memory_get_peak_usage() / 1024 / 1024;
+        return memory_get_peak_usage(true) / 1048576;
     }
 
     protected function formatMessage(array $message): string
     {
         // phpcs:ignore
-        return "{$message['uniqid']} {$message['method']} {$message['uri']} - Time: {$message['time']} - Memory: {$message['memory']}";
+        return "{$message['uniqid']} {$message['method']} {$message['uri']} - Time: {$message['time']} - Memory: {$message['memory']}MiB";
     }
 }
