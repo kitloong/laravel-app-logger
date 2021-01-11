@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 class LogWriter implements PerformanceLogWriter
 {
     /**
-     * Application start time with microtime()
+     * Application start time in microtime
      *
      * @var float|string
      */
@@ -49,17 +49,17 @@ class LogWriter implements PerformanceLogWriter
     protected function getTimeInMilliSeconds(): string
     {
         $milliSeconds = (microtime(true) - $this->start) * 1000;
-        return sprintf('%.3f', $milliSeconds);
+        return (string) round($milliSeconds, 2);
     }
 
-    protected function getMemoryInMB(): int
+    protected function getMemoryInMB(): string
     {
-        return memory_get_peak_usage(true) / 1048576;
+        return (string) round(memory_get_peak_usage(true) / 1048576, 2);
     }
 
     protected function formatMessage(array $message): string
     {
         // phpcs:ignore
-        return "{$message['uniqid']} {$message['method']} {$message['uri']} - Time: {$message['time']} - Memory: {$message['memory']}MiB";
+        return "{$message['uniqid']} {$message['method']} {$message['uri']} - Time: {$message['time']} ms - Memory: {$message['memory']} MiB";
     }
 }
