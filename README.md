@@ -163,9 +163,9 @@ When you write your own `log_profile`, you must implement each loggers' own `Log
 
 |Logger|Interface|
 |---|---|
-|http|\KitLoong\AppLogger\HttpLog\HttpLogProfile|
-|performance|\KitLoong\AppLogger\PerformanceLog\PerformanceLogProfile|
-|query|\KitLoong\AppLogger\QueryLog\QueryLogProfile|
+|http|`\KitLoong\AppLogger\HttpLog\HttpLogProfile`|
+|performance|`\KitLoong\AppLogger\PerformanceLog\PerformanceLogProfile`|
+|query|`\KitLoong\AppLogger\QueryLog\QueryLogProfile`|
 
 The interface requires `shouldLog` implementation. This is where you place your log condition.
 
@@ -173,9 +173,9 @@ When you write your own `log_writer`, you must implement each loggers' own `LogW
 
 |Logger|Interface|
 |---|---|
-|http|\KitLoong\AppLogger\HttpLog\HttpLogWriter|
-|performance|\KitLoong\AppLogger\PerformanceLog\PerformanceLogWriter|
-|query|\KitLoong\AppLogger\QueryLog\QueryLogWriter|
+|http|`\KitLoong\AppLogger\HttpLog\HttpLogWriter`|
+|performance|`\KitLoong\AppLogger\PerformanceLog\PerformanceLogWriter`|
+|query|`\KitLoong\AppLogger\QueryLog\QueryLogWriter`|
 
 The interface requires `log` implementation. This is where you define your log body message.
 
