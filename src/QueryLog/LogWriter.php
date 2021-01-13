@@ -35,8 +35,8 @@ class LogWriter implements QueryLogWriter
                 ? "/(?<!\?)\?(?=(?:[^'\\\']*'[^'\\']*')*[^'\\\']*$)(?!\?)/"
                 : "/:{$key}(?=(?:[^'\\\']*'[^'\\\']*')*[^'\\\']*$)/";
 
-            // Mimic bindValue and only quote non-integer and non-float data types
-            if (!is_int($binding) && !is_float($binding)) {
+            // Mimic bindValue and only string data types
+            if (is_string($binding)) {
                 $binding = $this->quote($binding);
             }
 
