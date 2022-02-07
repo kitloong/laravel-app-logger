@@ -11,5 +11,11 @@ use Illuminate\Http\Request;
 
 interface PerformanceLogWriter
 {
-    public function log(Request $request, string $uniqId): void;
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Response  $response
+     * @param  string  $uniqId
+     * @return void
+     */
+    public function log(Request $request, $response, string $uniqId): void;
 }

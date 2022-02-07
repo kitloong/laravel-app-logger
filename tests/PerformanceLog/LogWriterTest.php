@@ -8,6 +8,7 @@
 namespace KitLoong\AppLogger\Tests\PerformanceLog;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
 use KitLoong\AppLogger\PerformanceLog\LogWriter;
@@ -46,14 +47,16 @@ class LogWriterTest extends TestCase
         Log::shouldReceive('info')
             ->withArgs(function ($args) {
                 $this->assertStringMatchesFormat(
-                    'test-uniqid POST /test/uri - Time: %f ms - Memory: %f MiB',
+                    'test-uniqid POST /test/uri %d - Time: %f ms - Memory: %f MiB',
                     $args
                 );
                 return true;
             })
             ->once();
 
-        $logWriter->log($request, 'test-uniqid');
+        $response = new Response('content', Response::HTTP_OK);
+
+        $logWriter->log($request, $response, 'test-uniqid');
     }
 
     public function testGetMessages()
@@ -61,13 +64,15 @@ class LogWriterTest extends TestCase
         $logWriter = $this->getLogWriter();
 
         $request = $this->makeRequest(Request::METHOD_POST, self::TEST_URI);
+        $response = new Response('content', Response::HTTP_OK);
 
-        $messages = $logWriter->testGetMessages($request, 'test-uniqid');
+        $messages = $logWriter->testGetMessages($request, $response, 'test-uniqid');
 
-        $this->assertSame(5, count($messages));
+        $this->assertSame(6, count($messages));
         $this->assertSame('test-uniqid', $messages['uniqid']);
         $this->assertSame('POST', $messages['method']);
         $this->assertSame($request->getPathInfo(), $messages['uri']);
+        $this->assertSame(Response::HTTP_OK, $messages['status']);
         $this->assertArrayHasKey('time', $messages);
         $this->assertArrayHasKey('memory', $messages);
     }
@@ -80,11 +85,12 @@ class LogWriterTest extends TestCase
             'uniqid' => 'test-uniqid',
             'method' => 'post',
             'uri' => '/test/url',
+            'status' => '200',
             'time' => '50',
             'memory' => '20',
         ]);
 
-        $this->assertSame('test-uniqid post /test/url - Time: 50 ms - Memory: 20 MiB', $message);
+        $this->assertSame('test-uniqid post /test/url 200 - Time: 50 ms - Memory: 20 MiB', $message);
     }
 
     private function getLogWriter(): LogWriter
@@ -95,9 +101,9 @@ class LogWriterTest extends TestCase
                 return $this->start;
             }
 
-            public function testGetMessages(Request $request, string $uniqId): array
+            public function testGetMessages(Request $request, $response, string $uniqId): array
             {
-                return $this->getMessages($request, $uniqId);
+                return $this->getMessages($request, $response, $uniqId);
             }
 
             public function testFormatMessage(array $message): string

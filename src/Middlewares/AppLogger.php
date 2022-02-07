@@ -46,11 +46,12 @@ class AppLogger
 
     /**
      * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Response  $response
      */
-    public function terminate(Request $request)
+    public function terminate(Request $request, $response)
     {
         if ($this->performanceLogProfile->shouldLog($request)) {
-            $this->performanceLogWriter->log($request, $this->uniqId);
+            $this->performanceLogWriter->log($request, $response, $this->uniqId);
         }
     }
 }

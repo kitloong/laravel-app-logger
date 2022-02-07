@@ -28,19 +28,32 @@ class LogWriter implements PerformanceLogWriter
         }
     }
 
-    public function log(Request $request, string $uniqId): void
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Response  $response
+     * @param  string  $uniqId
+     * @return void
+     */
+    public function log(Request $request, $response, string $uniqId): void
     {
-        $message = $this->formatMessage($this->getMessages($request, $uniqId));
+        $message = $this->formatMessage($this->getMessages($request, $response, $uniqId));
 
         Log::channel(config('app-logger.performance.channel'))->info($message);
     }
 
-    protected function getMessages(Request $request, string $uniqId): array
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Response  $response
+     * @param  string  $uniqId
+     * @return array
+     */
+    protected function getMessages(Request $request, $response, string $uniqId): array
     {
         return [
             'uniqid' => $uniqId,
             'method' => strtoupper($request->getMethod()),
             'uri' => $request->getPathInfo(),
+            'status' => $response->getStatusCode(),
             'time' => $this->getTimeInMilliSeconds(),
             'memory' => $this->getMemoryInMB(),
         ];
@@ -60,6 +73,6 @@ class LogWriter implements PerformanceLogWriter
     protected function formatMessage(array $message): string
     {
         // phpcs:ignore
-        return "{$message['uniqid']} {$message['method']} {$message['uri']} - Time: {$message['time']} ms - Memory: {$message['memory']} MiB";
+        return "{$message['uniqid']} {$message['method']} {$message['uri']} {$message['status']} - Time: {$message['time']} ms - Memory: {$message['memory']} MiB";
     }
 }
