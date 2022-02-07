@@ -40,6 +40,11 @@ class LogWriter implements QueryLogWriter
                 $binding = $this->quote($binding);
             }
 
+            // Make null visible in log
+            if (is_null($binding)) {
+                $binding = 'null';
+            }
+
             $sql = preg_replace($regex, $binding, $sql, 1);
         }
 
