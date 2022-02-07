@@ -47,7 +47,7 @@ RUN_QUERY_LOG=false
 ### Performance log
 
 ```log
-[2021-01-10 23:35:27] local.INFO: 2725ffb10adeae3f POST /path - Time: 55.82 ms - Memory: 22.12 MiB
+[2021-01-10 23:35:27] local.INFO: 2725ffb10adeae3f POST /path 201 - Time: 55.82 ms - Memory: 22.12 MiB
 ```
 
 ### Query log
@@ -69,7 +69,7 @@ To ease for analysis, a unique string is embedded into **HTTP request** and **pe
 [2021-01-10 23:35:25] local.INFO: 2725ffb10adeae3f GET /path - Body ...
 
 # Performance, unique: 2725ffb10adeae3f
-[2021-01-10 23:35:27] local.INFO: 2725ffb10adeae3f GET /path - Time: 55.82 ms - Memory: 5.12 MiB
+[2021-01-10 23:35:27] local.INFO: 2725ffb10adeae3f GET /path 200 - Time: 55.82 ms - Memory: 5.12 MiB
 ```
 
 If you found any high memory usage or slow requests you could easily grep request log by the unique string for more information.
