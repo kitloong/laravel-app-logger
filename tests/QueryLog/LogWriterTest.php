@@ -88,6 +88,34 @@ class LogWriterTest extends TestCase
         ], $messages);
     }
 
+    public function testGetMessageWithNull()
+    {
+        $connection = Mockery::mock(Connection::class);
+        $connection->shouldReceive('getName')
+            ->andReturn('mysql')
+            ->once();
+
+        $query = new QueryExecuted(
+            'INSERT INTO users SET name = :name, email = :email, remember_token = :remember_token',
+            [
+                'id' => 1,
+                'name' => 'Name',
+                'remember_token' => null,
+            ],
+            10,
+            $connection
+        );
+
+        $logWriter = $this->getLogWriter();
+        $messages = $logWriter->testGetMessages($query);
+
+        $this->assertSame([
+            'time' => 10,
+            'connection_name' => 'mysql',
+            'sql' => "INSERT INTO users SET name = 'Name', email = :email, remember_token = null",
+        ], $messages);
+    }
+
     public function testFormatMessage()
     {
         $logWriter = $this->getLogWriter();
