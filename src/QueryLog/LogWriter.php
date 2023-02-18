@@ -1,9 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: liow.kitloong
- * Date: 2020/10/14
- */
 
 namespace KitLoong\AppLogger\QueryLog;
 

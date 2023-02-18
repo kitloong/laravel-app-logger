@@ -1,9 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: liow.kitloong
- * Date: 2021/01/10
- */
 
 namespace KitLoong\AppLogger\Tests\PerformanceLog;
 
