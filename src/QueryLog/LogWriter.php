@@ -17,6 +17,13 @@ class LogWriter implements QueryLogWriter
         });
     }
 
+    /**
+     * @return array{
+     *     time: float,
+     *     connection_name: string,
+     *     sql: string
+     * }
+     */
     protected function getMessages(QueryExecuted $query): array
     {
         $sql = $query->sql;

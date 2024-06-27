@@ -16,6 +16,16 @@ class LogWriter extends DefaultLogWriter implements HttpLogWriter
         Log::channel(config('app-logger.http.channel'))->info($message);
     }
 
+    /**
+     * @return array{
+     *     uniqid: string,
+     *     method: string,
+     *     uri: string,
+     *     body: array<string, mixed>,
+     *     headers: array<string, array<string>>,
+     *     files: array<string>
+     * }
+     */
     protected function getMessages(Request $request, string $uniqId): array
     {
         $files = (new Collection(iterator_to_array($request->files)))
